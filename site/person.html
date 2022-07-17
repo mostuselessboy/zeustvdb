@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content={{person['name']}}>
+<meta property="twitter:title" content="{{person['name']}}">
+<meta property="twitter:description" content="{{person['bio']}}">
+<meta property="twitter:image" content={{person['img']}}>
+<meta name="type" content='website'>
+<link rel="shortcut icon" href='https://zeustvdb.mostuselessboy.repl.co/assets/images/icon.png' type="image/png">
+<title>ZeusTV</title>
+<link rel="stylesheet" href="https://zeustvdb.mostuselessboy.repl.co/assets/css/main.css">
+<link rel="stylesheet" href="https://zeustvdb.mostuselessboy.repl.co/assets/css/media_query.css">
+<!-----------------------------FONTS----------------------------->
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600&display=swap" rel="stylesheet"></head>
+  <BODY ondragstart="return false;" ondrop="return false;">
+
+<script data-cfasync="false">
+  (function(r,e,E,m,b){E[r]=E[r]||{};E[r][b]=E[r][b]||function(){
+  (E[r].q=E[r].q||[]).push(arguments)};b=m.getElementsByTagName(e)[0];m=m.createElement(e);
+  m.async=1;m.src=("file:"==location.protocol?"https:":"")+"//s.reembed.com/G-XEVPOn.js";
+  b.parentNode.insertBefore(m,b)})("reEmbed","script",window,document,"api");
+</script>
+<body>
+<div class="container">
+<header class="">
+<div class="navbar">
+<button class="navbar-menu-btn">
+<span class="one"></span>
+<span class="two"></span>
+<span class="three"></span>
+</button>
+<!-----------------------------LOGO----------------------------->
+
+
+    <a href="" class="navbar-brand-search"><img src="https://zeustvdb.mostuselessboy.repl.co/assets/images/drawer.png" alt="" class="footer-logo"></a>
+<a href="/" class="navbar-brand"><img  src="https://zeustvdb.mostuselessboy.repl.co/assets/images/logo.png" alt="" class="footer-logo"></a>
+  <a href="/search" class="navbar-brand-search"><img  src="https://zeustvdb.mostuselessboy.repl.co/assets/images/search.png" alt="" class="footer-logo"></a>
+
+<!-----------------------------NAVBAR--------------------------->
+<nav class="">
+<ul class="navbar-nav">
+<li> <a href="/#movies" class="navbar-link">Movies</a> </li>
+<li> <a href="/#category" class="navbar-link">Category</a> </li>
+<li> <a href="/#tv" class="navbar-link">TV Shows</a> </li>
+</ul>
+</nav>
+
+<!-----------------------------SEARCHBAR--------------------------->
+<div class="navbar-actions">
+<form action="/searchresult" method = "post" class="navbar-form" autocomplete="off">
+<input autoComplete='off' type="text" name="search" placeholder="Search" class="navbar-form-search">
+<button class="navbar-form-btn">
+<ion-icon name="search-outline"></ion-icon>
+</button>
+<button class="navbar-form-close">
+<ion-icon name="close-circle-outline"></ion-icon>
+</button>
+</form>
+
+</header>
+
+<!-----------------------------MOVIE HEADER--------------------------->
+<main>
+
+<!------------MOVIES SECTION-CARD----------->
+
+<section class="banner">
+<div class="banner-card-person">
+<img loading="lazy" src={{person['img']}} alt="" class="banner-img2">
+</div>
+<h2 class="bio-subtitle"> {{ person['dob']}}</h2> 
+<h2 class="bio-title">{{person['name']}}</h2>
+<button id='sharingbtn' class = "shareBTN"><ion-icon name="share-outline"></ion-icon> Share</button>
+
+<script>
+  const shareButton = document.querySelector('#sharingbtn');
+  const title = window.document.title;
+    const url = window.document.location.href;
+shareButton.addEventListener("click", async () => {
+  try {
+    await navigator.share({ title: `${title}`, url: `${url}` });
+    console.log("Data was shared successfully");
+  } catch (err) {
+    console.error("Share failed:", err.message);
+  }
+});
+</script>
+<div class="rating">{{""+person['work']+" "}}</div>
+
+<h2 class="bio-text">{{person['bio']}}</h2>
+</section>
+
+	<section class="movies"id="movies">
+<h3 class="bio-subtitle">{{"Images of " +person['name']}}</h3>
+
+<h2 class="bio-title">Gallery</h2>
+<div class="movies-grid">
+
+<!------------MOVIES SECTION-CARD----------->
+{%for image in images:%}
+<div class="movie-card">
+<a href={{image}}>
+<div class="card-head">
+<img loading="lazy" src={{image}} alt="" class="card-img">
+</div></div>
+</a>
+{%endfor%}
+</div>
+</section>
+
+            <section> <h3 class="bio-subtitle">{{"Connect Via"}}</h3> <h2 class="bio-title">Social Media</h2> {%if external['insta']!= None%}<a href={{"https://www.instagram.com/"+ external['insta']}} target="_blank"><button class = "shareBTN"><ion-icon name="logo-instagram"></ion-icon> Instagram</button></a>{%endif%}{%if external['twitter']!= None%}<a href={{"https://www.twitter.com/"+external['twitter']}} target="_blank"><button class = "shareBTN"><ion-icon name="logo-twitter"></ion-icon> Twitter</button></a>{%endif%}{%if external['fb']!= None%}<a href={{"https://www.facebook.com/"+ external['fb']}} target="_blank"><button class = "shareBTN"><ion-icon name="logo-facebook"></ion-icon> Facebook</button></a>{%endif%} {%if external['imdb']!= None%} <a href={{"https://imdb.com/title/"+ external['imdb']}} target="_blank"><button class = "shareBTN"><ion-icon name="film"></ion-icon> IMDB</button></a>{%endif%} </section>
+
+	
+<section class="movies"id="movies">
+	<h3 class="bio-subtitle">{{"Movies casting " +person['name']}}</h3>
+<h2 class="bio-title">Latest Movies</h2>
+<div class="movies-grid">
+
+<!------------MOVIES SECTION-CARD----------->
+{%for movie in movies:%}
+<div class="movie-card">
+<a href={{"/movie/?id="+ movie['id']}}>
+<div class="card-head">
+<img loading="lazy" src={{movie['img']}} alt="" class="card-img">
+<div class="card-overlay">
+<div class="rating">
+<ion-icon name="star-outline"></ion-icon>
+<span>{{movie['rating']}}</span>
+</div>
+
+<div class="play">
+<ion-icon name="play-circle-outline"></ion-icon>
+</div></div></div>
+<div class="card-body">
+<h3 class="card-title">{{movie['title']}}</h3>
+</a>
+<div class="card-info">
+<span class="genre">{{movie['type']}}</span>
+<span class="year">{{movie['year']}}</span>
+</div></div></div>
+{%endfor%}
+</div>
+</section>
+
+<section class="movies"id="movies">
+<h3 class="bio-subtitle">{{"Movies casting " +person['name']}}</h3>
+
+<h2 class="bio-title">Popular Movies</h2>
+<div class="movies-grid">
+
+<!------------MOVIES SECTION-CARD----------->
+{%for movie in top_movies:%}
+<div class="movie-card">
+<a href={{"/movie/?id="+ movie['id']}}>
+<div class="card-head">
+<img loading="lazy" src={{movie['img']}} alt="" class="card-img">
+<div class="card-overlay">
+<div class="rating">
+<ion-icon name="star-outline"></ion-icon>
+<span>{{movie['rating']}}</span>
+</div>
+
+<div class="play">
+<ion-icon name="play-circle-outline"></ion-icon>
+</div></div></div>
+<div class="card-body">
+<h3 class="card-title">{{movie['title']}}</h3>
+</a>
+<div class="card-info">
+<span class="genre">{{movie['type']}}</span>
+<span class="year">{{movie['year']}}</span>
+</div></div></div>
+{%endfor%}
+</div>
+</section>
+  
+</main>
+
+
+
+<!-----------------------------FOOTER-SECTION--------------------------->
+<footer>
+<div class="footer-content">
+<div class="footer-brand">
+<img loading="lazy" src="/assets/images/logo.png" alt="" class="footer-logo">
+<p class="slogan">ZeusTV is an advanced Movie Database  made for "Tech Optimum" Hackathon. It helps you get all the info about a movie or a tvshow. Movie data is provided by TMDB .</p>
+<div class="social-link">
+<a href="https://www.twitter.com/">
+<ion-icon name="logo-twitter"></ion-icon>
+</a>
+<a href="https://www.instagram.com/">
+<ion-icon name="logo-instagram"></ion-icon>
+</a>
+<a href="https://www.github.com/">
+<ion-icon name="logo-github"></ion-icon>
+</a>
+</div></div>
+<div class="footer-links">
+</div></div>
+<div class="footer-copyright">
+<div class="copyright">
+<p>&copy;2022 ZeusTV</p>
+</div>
+
+<div class="wrapper">
+<a href="#">Privacy policy</a>
+<a href="#">Terms and conditions</a>
+</div></div></footer></div>
+<!-----------------------------CLOSING HTML--------------------------->
+<script src="/https://zeustvdb.mostuselessboy.repl.co/assets/js/main.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
+</body>
+</html>

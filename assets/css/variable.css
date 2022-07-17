@@ -1,0 +1,35 @@
+
+:root {
+
+  --live-indicator-shadow: hsla(0, 79%, 63%, 0.5);
+  --rich-black-fogra-30:   hsl(210, 57%, 5%);
+  --rich-black-fogra-29:   hsl(210, 57%, 5%);
+  --live-indicator:        hsl(213, 43%, 9%);
+  --oxford-blue-50:        hsla(218, 39%, 14%, 0.8);
+  --oxford-blue:           hsl(213, 43%, 9%);
+  --light-azure:           #D1151E;
+  --off-white:             hsl(0, 0%, 90%);
+  --yellow:                hsl(45, 100%, 54%);
+  --white:                 hsl(0, 0%, 100%);
+  --azure:                 #D1151E;
+
+
+
+  --ff-inter: "Sora", sans-serif;
+
+  --section-heading: 40px;
+  --fs-lg:           22px;
+  --fs-md:           17px;
+  --fs-sm:           16px;
+  --fs-x-sm:         14px;
+  
+  --fw-7: 700;
+  --fw-6: 600;
+  --fw-5: 500;
+    --fw-3: 50;
+
+
+
+  --px: 100px; 
+
+}
